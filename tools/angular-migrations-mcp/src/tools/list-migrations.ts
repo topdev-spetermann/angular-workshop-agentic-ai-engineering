@@ -7,7 +7,7 @@ export const ListMigrationsSchema = z.object({
 
 export async function listMigrations(args: z.infer<typeof ListMigrationsSchema>) {
   const docsService = new DocsScraperService();
-  
+
   let migrations;
   if (args.category) {
     migrations = await docsService.getMigrationsByCategory(args.category);

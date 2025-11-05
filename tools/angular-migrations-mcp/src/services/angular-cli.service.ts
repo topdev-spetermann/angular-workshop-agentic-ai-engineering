@@ -29,7 +29,7 @@ export class AngularCliService {
     options: { dryRun?: boolean; verbose?: boolean } = {}
   ): Promise<{ stdout: string; stderr: string }> {
     const args = ['generate', `@angular/core:${migrationName}`];
-    
+
     if (options.dryRun) {
       args.push('--dry-run');
     }

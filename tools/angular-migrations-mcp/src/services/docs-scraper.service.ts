@@ -8,15 +8,8 @@ export class DocsScraperService {
       description: 'Migrates to standalone components, removes NgModules',
       command: 'ng generate @angular/core:standalone-migration',
       category: 'standalone',
-      breakingChanges: [
-        'NgModules are removed',
-        'bootstrap is changed to bootstrapApplication'
-      ],
-      manualSteps: [
-        'Review generated code',
-        'Update lazy-loaded routes',
-        'Check for circular dependencies'
-      ]
+      breakingChanges: ['NgModules are removed', 'bootstrap is changed to bootstrapApplication'],
+      manualSteps: ['Review generated code', 'Update lazy-loaded routes', 'Check for circular dependencies']
     },
     {
       name: 'standalone',
@@ -31,15 +24,8 @@ export class DocsScraperService {
       description: 'Migrates to new control flow syntax (@if, @for, @switch)',
       command: 'ng generate @angular/core:control-flow-migration',
       category: 'control-flow',
-      breakingChanges: [
-        '*ngIf replaced with @if',
-        '*ngFor replaced with @for',
-        '*ngSwitch replaced with @switch'
-      ],
-      manualSteps: [
-        'Review complex template logic',
-        'Test all conditional rendering'
-      ]
+      breakingChanges: ['*ngIf replaced with @if', '*ngFor replaced with @for', '*ngSwitch replaced with @switch'],
+      manualSteps: ['Review complex template logic', 'Test all conditional rendering']
     },
     {
       name: 'signal-migration',
@@ -47,15 +33,8 @@ export class DocsScraperService {
       description: 'Migrates to Angular Signals',
       command: 'ng generate @angular/core:signal-migration',
       category: 'signals',
-      breakingChanges: [
-        'Properties converted to signals',
-        'Change detection strategy may change'
-      ],
-      manualSteps: [
-        'Update computed values',
-        'Review effects',
-        'Update template bindings'
-      ]
+      breakingChanges: ['Properties converted to signals', 'Change detection strategy may change'],
+      manualSteps: ['Update computed values', 'Review effects', 'Update template bindings']
     },
     {
       name: 'inject-migration',
@@ -63,13 +42,8 @@ export class DocsScraperService {
       description: 'Migrates to inject() function',
       command: 'ng generate @angular/core:inject-migration',
       category: 'inject',
-      breakingChanges: [
-        'Constructor injection replaced with inject()'
-      ],
-      manualSteps: [
-        'Verify dependency injection works',
-        'Update tests'
-      ]
+      breakingChanges: ['Constructor injection replaced with inject()'],
+      manualSteps: ['Verify dependency injection works', 'Update tests']
     },
     {
       name: 'signal-input-migration',
@@ -77,9 +51,7 @@ export class DocsScraperService {
       description: 'Migrates @Input() to input() signals',
       command: 'ng generate @angular/core:signal-input-migration',
       category: 'signals',
-      breakingChanges: [
-        '@Input() decorators replaced with input() function'
-      ]
+      breakingChanges: ['@Input() decorators replaced with input() function']
     },
     {
       name: 'output-migration',
@@ -110,9 +82,7 @@ export class DocsScraperService {
   async searchMigrations(query: string): Promise<Migration[]> {
     const lowerQuery = query.toLowerCase();
     return this.MIGRATIONS_DATA.filter(
-      m =>
-        m.name.toLowerCase().includes(lowerQuery) ||
-        m.description.toLowerCase().includes(lowerQuery)
+      m => m.name.toLowerCase().includes(lowerQuery) || m.description.toLowerCase().includes(lowerQuery)
     );
   }
 }

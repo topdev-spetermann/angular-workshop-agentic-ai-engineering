@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import {
-  CallToolRequestSchema,
-  ListToolsRequestSchema,
-} from '@modelcontextprotocol/sdk/types.js';
+import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 
 import { listMigrations, ListMigrationsSchema } from './tools/list-migrations.js';
 import { executeMigration, ExecuteMigrationSchema } from './tools/execute-migration.js';
@@ -16,12 +13,12 @@ const WORKSPACE_ROOT = process.cwd();
 const server = new Server(
   {
     name: 'angular-migrations-mcp',
-    version: '1.0.0',
+    version: '1.0.0'
   },
   {
     capabilities: {
-      tools: {},
-    },
+      tools: {}
+    }
   }
 );
 
@@ -37,10 +34,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {
             category: {
               type: 'string',
-              description: 'Filter by category: standalone, signals, control-flow, inject, general',
-            },
-          },
-        },
+              description: 'Filter by category: standalone, signals, control-flow, inject, general'
+            }
+          }
+        }
       },
       {
         name: 'execute_migration',
@@ -50,29 +47,29 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {
             migrationName: {
               type: 'string',
-              description: 'Name of the migration to execute (e.g., "standalone-migration")',
+              description: 'Name of the migration to execute (e.g., "standalone-migration")'
             },
             dryRun: {
               type: 'boolean',
               description: 'Run in dry-run mode without making changes',
-              default: false,
+              default: false
             },
             verbose: {
               type: 'boolean',
               description: 'Show verbose output',
-              default: false,
-            },
+              default: false
+            }
           },
-          required: ['migrationName'],
-        },
+          required: ['migrationName']
+        }
       },
       {
         name: 'check_migration_status',
         description: 'Check current Angular version and available migrations',
         inputSchema: {
           type: 'object',
-          properties: {},
-        },
+          properties: {}
+        }
       },
       {
         name: 'get_migration_details',
@@ -82,18 +79,18 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {
             migrationName: {
               type: 'string',
-              description: 'Name of the migration',
-            },
+              description: 'Name of the migration'
+            }
           },
-          required: ['migrationName'],
-        },
-      },
-    ],
+          required: ['migrationName']
+        }
+      }
+    ]
   };
 });
 
 // Handle tool calls
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   try {
     switch (request.params.name) {
       case 'list_available_migrations': {
@@ -125,10 +122,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         content: [
           {
             type: 'text',
-            text: `Error: ${error.message}`,
-          },
+            text: `Error: ${error.message}`
+          }
         ],
-        isError: true,
+        isError: true
       };
     }
     throw error;
@@ -142,7 +139,7 @@ async function main() {
   console.error('Angular Migrations MCP Server running on stdio');
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error('Fatal error:', error);
   process.exit(1);
 });

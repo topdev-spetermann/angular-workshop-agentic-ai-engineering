@@ -7,9 +7,9 @@ export const GetDetailsSchema = z.object({
 
 export async function getMigrationDetails(args: z.infer<typeof GetDetailsSchema>) {
   const docsService = new DocsScraperService();
-  
+
   const migration = await docsService.getMigrationDetails(args.migrationName);
-  
+
   if (!migration) {
     throw new Error(`Migration '${args.migrationName}' not found.`);
   }

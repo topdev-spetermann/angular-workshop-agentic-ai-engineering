@@ -8,10 +8,7 @@ export const ExecuteMigrationSchema = z.object({
   verbose: z.boolean().optional().default(false)
 });
 
-export async function executeMigration(
-  args: z.infer<typeof ExecuteMigrationSchema>,
-  workspaceRoot: string
-) {
+export async function executeMigration(args: z.infer<typeof ExecuteMigrationSchema>, workspaceRoot: string) {
   const cliService = new AngularCliService(workspaceRoot);
   const docsService = new DocsScraperService();
 

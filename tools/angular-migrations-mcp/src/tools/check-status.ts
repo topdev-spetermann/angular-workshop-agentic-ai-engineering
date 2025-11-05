@@ -4,10 +4,7 @@ import { DocsScraperService } from '../services/docs-scraper.service.js';
 
 export const CheckStatusSchema = z.object({});
 
-export async function checkMigrationStatus(
-  args: z.infer<typeof CheckStatusSchema>,
-  workspaceRoot: string
-) {
+export async function checkMigrationStatus(args: z.infer<typeof CheckStatusSchema>, workspaceRoot: string) {
   const cliService = new AngularCliService(workspaceRoot);
   const docsService = new DocsScraperService();
 
@@ -19,10 +16,10 @@ export async function checkMigrationStatus(
 
   // Get current version
   const currentVersion = await cliService.getCurrentVersion();
-  
+
   // Get available updates
   const updatesOutput = await cliService.checkAvailableUpdates();
-  
+
   // Get all available migrations
   const allMigrations = await docsService.listAvailableMigrations();
 
