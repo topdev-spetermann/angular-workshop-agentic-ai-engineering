@@ -210,7 +210,7 @@ export class BookListComponent implements OnInit {
     if (this.searchDebounceHandle) {
       clearTimeout(this.searchDebounceHandle);
     }
-    this.searchDebounceHandle = globalThis.setTimeout(() => this.load(), 300);
+    this.searchDebounceHandle = setTimeout(() => this.load(), 300);
   }
 
   clearSearch(): void {
