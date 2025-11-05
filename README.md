@@ -12,6 +12,8 @@
   <br>
 </p>
 
+> Weitere Details zur technischen Umsetzung findest du in der [Architektur- und Tech-Stack-Zusammenfassung](./ARCHITEKTUR.md).
+
 ## Local Development
 
 | Command       | Description                                      |
