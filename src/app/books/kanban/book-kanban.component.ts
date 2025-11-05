@@ -28,7 +28,9 @@ const LS_KEY = 'book-kanban-state:v1';
         <div
           class="column"
           cdkDropList
+          [id]="col.id"
           [cdkDropListData]="col.bookIds"
+          [cdkDropListConnectedTo]="connectedLists()"
           (cdkDropListDropped)="drop($event)"
           role="list"
           [attr.aria-label]="col.title"
@@ -87,6 +89,7 @@ export class BookKanbanComponent {
   readonly books = signal<Book[]>([]);
   readonly board = signal<KanbanBoardState>(this.loadBoard());
   readonly columns = computed(() => this.board().columns);
+  readonly connectedLists = computed(() => this.columns().map(c => c.id));
 
   ngOnInit(): void {
     this.api.getBooks(1, 1000).subscribe({
