@@ -1,16 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Book } from './book';
 import { BookApiClient } from './book-api-client.service';
 import { BookItemComponent } from './book-item.component';
 
 @Component({
   selector: 'app-book-list',
-  imports: [CommonModule, BookItemComponent],
+  imports: [CommonModule, RouterModule, BookItemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container mx-auto px-4 py-12 max-w-7xl">
-      <h1 class="text-3xl font-bold mb-10 text-blue-700 border-b pb-4 border-gray-200">Book Collection</h1>
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-3xl font-bold text-blue-700 border-b pb-4 border-gray-200">Book Collection</h1>
+        <a
+          routerLink="/books/new"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+          aria-label="Neues Buch anlegen"
+        >
+          Neues Buch
+        </a>
+      </div>
 
       <div class="mb-6">
         <div class="flex items-center border-b-2 border-gray-300 py-2">

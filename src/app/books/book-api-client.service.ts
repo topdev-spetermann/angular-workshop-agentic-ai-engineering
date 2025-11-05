@@ -29,4 +29,8 @@ export class BookApiClient {
   getBook(id: string): Observable<Book> {
     return this.http.get<Book>(`${this.apiUrl}/${id}`);
   }
+
+  createBook(book: Omit<Book, 'id'>): Observable<Book> {
+    return this.http.post<Book>(this.apiUrl, book);
+  }
 }
